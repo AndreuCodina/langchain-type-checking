@@ -36,13 +36,11 @@ Total funding received by the provided company.
         ],
         input_variables=list(GetFundingInput.model_fields),
     )
-    model: Runnable[dict[str, Any], GetFundingOutput] = (  # type: ignore[reportUnknownVariableType]
-        ChatOpenAI(  # type: ignore[reportUnknownVariableType]
-            api_key=SecretStr("TBD"),
-            model="gpt-5-mini-2025-08-07",
-            temperature=0.0,
-        ).with_structured_output(GetFundingOutput, strict=True)
-    )
+    model: Runnable[dict[str, Any], GetFundingOutput] = ChatOpenAI(  # type: ignore[reportUnknownVariableType]
+        api_key=SecretStr("TBD"),
+        model="gpt-5-mini-2025-08-07",
+        temperature=0.0,
+    ).with_structured_output(GetFundingOutput, strict=True)
     chain: Runnable[dict[str, Any], GetFundingOutput] = (  # type: ignore[reportUnknownVariableType]
         prompt | model
     ).with_config({"run_name": get_funding.__name__})
