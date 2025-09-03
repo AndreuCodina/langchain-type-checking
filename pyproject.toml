@@ -1,0 +1,33 @@
+[project]
+name = "langchain-type-checking"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain==0.3.27",
+    "langchain-openai==0.3.32",
+    "pydantic==2.11.7",
+]
+
+[dependency-groups]
+dev = ["pyright[nodejs]==1.1.404", "ruff==0.12.11"]
+
+[tool.pyright]
+typeCheckingMode = "strict"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812", # missing-trailing-comma
+    "D100",   # undocumented-public-module
+    "D101",   # undocumented-public-class
+    "D102",   # undocumented-public-method
+    "D103",   # undocumented-public-function
+    "D104",   # undocumented-public-package
+    "D105",   # undocumented-magic-method
+    "D106",   # undocumented-public-nested-class
+    "D107",   # undocumented-public-init
+    "E501",   # line-too-long
+    "ICN",    # flake8-import-conventions
+    "S101",   # assert
+    "TRY003", # raise-vanilla-args
+]
